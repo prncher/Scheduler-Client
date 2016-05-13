@@ -1,0 +1,43 @@
+{
+  "name": "scheduler-client",
+  "version": "0.1.0",
+  "description": "A scheduler to store and notify the user about the tasks scheduled.",
+  "main": "Scripts/main.js",
+  "scripts": {
+    "postinstall": "bower install && typings install",
+    "test": "karma start ./karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/prncher/scheduler-client"
+  },
+  "keywords": [
+    "AngularJS",
+    "TypeScript",
+    "RequireJS",
+    "Bootstrap",
+    "JQuery",
+    "Protractor"
+  ],
+  "author": {
+    "name": "Prince Cheruvatur",
+    "email": "prncher@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-typescript": "^0.8.0",
+    "jasmine-core": "^2.4.1",
+    "karma": ">=0.9",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-coverage": "^0.5.5",
+    "karma-jasmine": "^0.3.8",
+    "karma-requirejs": "^0.2.6",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12",
+    "protractor": "*"
+  },
+  "devDependencies": {
+    "requirejs": "^2.1.0"
+  }
+}
