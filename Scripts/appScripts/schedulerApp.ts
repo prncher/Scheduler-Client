@@ -1,3 +1,10 @@
+/*
+ * schedulerApp
+ * 
+
+ * Author : Prince Cheruvathur
+ * License: MIT
+ */
 "use strict";
 import ctrlManagerModule = require("controlManager");
 

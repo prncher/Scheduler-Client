@@ -1,3 +1,10 @@
+/*
+ * configRouter
+ * 
+
+ * Author : Prince Cheruvathur
+ * License: MIT
+ */
 "use strict";
 import ng = angular;
 import ngr = angular.ui;

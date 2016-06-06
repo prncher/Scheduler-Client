@@ -11,7 +11,7 @@
     <link href="Content/main.css" rel="stylesheet" />
     <script data-main="Scripts/main" src="bower_components/requirejs/require.js"></script>
 </head>
-<body ng-controller="LoginController as ctrl">
+<body ng-controller="MainController as ctrl"  class="scParent">
     <div class="navbar navbar-inverse navbar-fixed-top center">
         <div class="navbar-inner">
             <div class="container center">
@@ -35,14 +35,14 @@
             </div>
         </div>
     </div>
-    <div id="container" class="container leftrightjustify">
-        <div ng-hide="ctrl.loggedIn || ctrl.location.path() !== '/'" class="col-lg-4 col-lg-offset-4">
-            <div>
-                    <a class="rbutton" ui-sref="register">Register new User</a>
-            </div>
-
+    <div id="container">
+        <div ui-view></div>
+	<div class="container leftrightjustify">
+        <div ng-hide="ctrl.loggedIn || ctrl.location.path() !== '/'" class="col-sm-4 col-sm-offset-4">
+                <a class="rbutton" ui-sref="register">Register new User</a>
         </div>
-        <div id="content" ui-view></div>
+	</div>
     </div>
+
 </body>
 </html>

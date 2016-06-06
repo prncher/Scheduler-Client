@@ -1,2 +1,57 @@
-<div class="col-sm-4 col-sm-offset-4 form-main">
+<div ng-controller="SchedulerController as ctrl" class="scParent">
+    <div class="leftrightjustify">
+	<div class="row-fluid sccontainer">
+        <div class="calHeader">Calender {{ctrl.today | date:'y'}}</div>
+        <a class="btn grooveBtn" ng-click="ctrl.previous()" role="button">Previous &raquo;</a>
+        <a class="btn nextBtn grooveBtn" ng-click="ctrl.next()" role="button">Next &raquo;</a>
+	</div>
+        <div class="sccontent">
+            <div ng-repeat="day in ctrl.days" class="col-lg-height col-full-height days">
+                <div class="dayHeader">{{day.date | date:'EEEE, MMMM d'}}
+                	<button type="button" class="btn btn-default" ng-click="ctrl.open(day)">+</button>
+		</div>
+                <div ng-repeat="sc in day.schedules">
+                     <div class="dayItem" ng-click="ctrl.edit(sc)" uib-tooltip="Title : {{sc.title}},
+Time : {{sc.time | date}},
+Duration : {{sc.duration}} minutes" tooltip-placement="right-top" tooltip-append-to-body="true"
+                           tooltip-popup-close-delay="200">{{sc.description}}
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="ScheduleItem">
+        <div class="modal-header scform ">
+            <h4 class="modal-title">Enter Scheduling Details</h4>
+        </div>
+        <div class="modal-body scform ">
+
+        <div class="form-group">
+            <label>Title :</label>
+            <input type="text" ng-required="true" ng-model="schedule.title" class="ng-pristine ng-valid form-control" placeholder="Enter Title" required />
+        </div>
+        <div class="form-group">
+            <label>Event :</label>
+            <input type="text" ng-model="schedule.event" class="ng-pristine ng-valid form-control" placeholder="Enter Event" required />
+        </div>
+        <div class="row">
+            <div class="form-group col-md-5">
+            <label>Time :</label>
+            <uib-timepicker ng-model="schedule.time" minute-step="15" show-meridian="true"></uib-timepicker>
+            <label>Duration :</label>
+            <div style="display:flex;"><input type="number" name="points" min="0" max="120" step="15" ng-model="schedule.duration" /><label>minutes</label></div>
+        </div>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" ng-model="schedule.description" class="ng-pristine ng-valid form-control" placeholder="Enter Description" required />
+        </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Add +</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
 </div>

@@ -1,4 +1,12 @@
+/*
+ * serviceHandler
+ * 
+
+ * Author : Prince Cheruvathur
+ * License: MIT
+ */
 "use strict";
+import ng = angular;
 
 interface IServiceHandler {
     assign(service: exportService): void;
@@ -18,7 +26,7 @@ export class exportService {
 
 export class serviceHandler implements IServiceHandler {
     service: exportService;
-    cache: ng.ICacheObject;
+    cache: ng.ICacheObject = null;
     constructor() {
     }
 
@@ -27,7 +35,9 @@ export class serviceHandler implements IServiceHandler {
     }
 
     public setToken(token: string): void {
+if (!this.cache ){
         this.cache = this.service.cacheFactory('Scheduler');
+}
         if (ng.isUndefined(this.cache.get('token'))) {
             this.cache.put('token', ng.isUndefined(token) ? null : token);
             this.service.$http.defaults.headers.common.Authorization = 'Bearer ' + token;
@@ -48,4 +58,29 @@ export class serviceHandler implements IServiceHandler {
             data: user
         });
     };
+
+    public addSchedule<T>(schedule: T): ng.IHttpPromise<T> {
+        return this.service.$http({
+            method: 'POST',
+            url: '/api/Schedules',
+            data: schedule
+        });
+    };
+
+    public editSchedule<T>(schedule: T): ng.IHttpPromise<T> {
+        return this.service.$http({
+            method: 'PUT',
+            url: '/api/Schedules',
+            data: schedule
+        });
+    };
+
+    public getSchedules<T>(studentId: number): ng.IHttpPromise<T> {
+        return this.service.$http({
+            method: 'GET',
+            url: '/api/Schedules?studentId=' + studentId
+        });
+    };
+
+
 }
